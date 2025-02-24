@@ -2,9 +2,16 @@
 Snakemake workflow for visualising SARS-CoV-2 amplicon dropout and primer mismatches 
 
 
+## Required input
+1. Primer bed file
+2. Sequence metadata 
+3. Consensus sequences
+
+
+
 ## Amplicon dropout heatmap
-![amplicon heatmap](my_output/plots/heatmap_amplicons.pdf)
+![amplicon heatmap](images/heatmap_amplicons.png)
 
 
 ## Primer mismatches heatmap
-![mismatch heatmap](my_output/plots/heatmap_primers_mismatch.pdf)
+![mismatch heatmap](images/heatmap_primers_mismatch.png)
