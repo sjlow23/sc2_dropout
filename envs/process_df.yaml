@@ -1,0 +1,10 @@
+channels:
+ - bioconda
+ - conda-forge
+
+dependencies:
+ - r-data.table
+ - r-dplyr
+ - r-tidyr
+ - csvtk
+ 
