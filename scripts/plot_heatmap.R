@@ -33,6 +33,6 @@ pheatmap(heatmap_primer.mat, cluster_cols=F, cluster_rows=F,
 		 fontsize=6, display_numbers=F, 
 		 cellwidth=11, cellheight=10,
 		 annotation_row=heatmap_amp_annotation,
-		 main="Mismatches in SARS-CoV-2 primers")
+		 main="Mismatches in SARS-CoV-2 primer binding sites")
 dev.off()
 
