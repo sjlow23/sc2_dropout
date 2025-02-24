@@ -3,8 +3,8 @@ Snakemake workflow for visualising SARS-CoV-2 amplicon dropout and primer mismat
 
 
 ## Amplicon dropout heatmap
-![amplicon heatmap](my_output/heatmap_amplicons.pdf)
+![amplicon heatmap](my_output/plots/heatmap_amplicons.pdf)
 
 
 ## Primer mismatches heatmap
-![mismatch heatmap](my_output/heatmap_primers_mismatch.pdf)
+![mismatch heatmap](my_output/plots/heatmap_primers_mismatch.pdf)
