@@ -10,7 +10,7 @@ load(args[1])
 
 # Amplicon heatmap
 heatmap_amp_annotation <- fread(args[4], header=T, sep="\t") %>%
-	select(sample_id, lineage, completeness, coverage_depth, mean_depth) %>%
+	select(sample_id, lineage, completeness, coverage_depth, mean_depth, qc_status) %>%
 	filter(sample_id %in% rownames(heatmap_amp.mat)) 
 heatmap_amp_annotation <- tibble::column_to_rownames(heatmap_amp_annotation, var="sample_id")
 
@@ -23,7 +23,6 @@ pheatmap(heatmap_amp.mat, cluster_cols=F, cluster_rows=T,
 		 annotation_row=heatmap_amp_annotation,
 		 main="Proportion of Ns in amplicon")
 dev.off()
-
 
 
 # Primer mismatch heatmap

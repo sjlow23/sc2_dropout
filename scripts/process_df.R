@@ -13,10 +13,18 @@ consensus_nprop <- fread(args[3], header=T, sep="\t")
 
 # Reformat input
 lineages <- lineages %>% 
-  mutate(sample=paste(sample_id, run_id, sep="|"))
+  mutate(sample=paste(sample_id, run_id, sep="|")) %>%
+  mutate(sample=as.character(sample))
+
+consensus_nprop <- consensus_nprop %>% 
+  mutate(sample=as.character(sample))
+
 
 # Generate intermediate dfs
 #Average amplicons sizes for estimating `N ratio` for missing amplicons
+
+amplicons <- amplicons %>%
+  mutate(sample=as.character(sample))
 
 mean_amplicon_size <- amplicons %>% 
   group_by(primer) %>% 

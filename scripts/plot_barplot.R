@@ -11,6 +11,10 @@ args <- commandArgs(trailingOnly=TRUE)
 load(args[1])
 lineages <- fread(args[2], header=T, sep="\t")
 
+
+amplicons_missing <- amplicons_missing %>%
+	mutate(sample=as.character(sample))
+
 lineage_summary <- lineages %>% 
 	group_by(lineage) %>% 
 	summarize(count_sequences_in_lineage=n_distinct(sample_id)) %>% 
