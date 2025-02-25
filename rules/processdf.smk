@@ -3,7 +3,7 @@ rule process_dfs:
 		rules.process_seqs.output.status,
 		stats = rules.process_seqs.output.stats,
 		prop = rules.process_seqs.output.prop,
-		lineages = "input/samples_lineage.tsv",
+		lineages = INPUT_LINEAGES
 		
 	output:
 		lineagefiltered = OUTDIR + "samples_lineage_filtered.tsv",

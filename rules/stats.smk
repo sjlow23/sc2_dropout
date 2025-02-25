@@ -1,8 +1,8 @@
 rule process_seqs:
 	input:
-		seq = "input/all_consensus.fasta",
-		primers = "input/primers_sc2.bed",
-		lineages = "input/samples_lineage.tsv"
+		seq = INPUT_SEQ,
+		primers = INPUT_PRIMERS,
+		lineages = INPUT_LINEAGES
 	output:
 		filteredseq = OUTDIR + "all_consensus_filtered.fasta",
 		prop = OUTDIR + "consensus_Nprop.tsv",
@@ -20,7 +20,7 @@ rule process_seqs:
 		csvtk filter2 -t -f '$run_id=={params.runid}' {input.lineages} | awk -F "\\t" '{{ print $2"|"$1 }}' > tmp
 		
 		seqkit grep -n -f tmp {input.seq} -o {output.filteredseq}
-		rm tmp
+		#rm tmp
 
 		seqtk comp {output.filteredseq} | \
 		cut -f1,2,9 | \
