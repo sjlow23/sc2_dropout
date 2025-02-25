@@ -1,5 +1,8 @@
-OUTDIR = "my_output/"
-RUNID = 241217059
+INPUT_SEQ = "input/sequences_250217041.fasta"
+INPUT_PRIMERS = "input/primers_sc2.bed"
+INPUT_LINEAGES = "input/lineage_250217041.tsv"
+OUTDIR = "output_250217041/"
+RUNID = 250217041
 
 rule all:
 	input:
