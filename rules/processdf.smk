@@ -10,12 +10,13 @@ rule process_dfs:
 		dfs = OUTDIR + "plots/plot_dfs.RData",
 		status = OUTDIR + "status/process_dfs.txt"
 	params:
-		runid = RUNID
+		runid = RUNID,
+		minlineagecount = 3,
 	conda: "../envs/process_df.yaml"
 	shell:
 		"""
 		csvtk filter2 -t -f '$run_id=={params.runid}' {input.lineages} > {output.lineagefiltered}
-		Rscript scripts/process_df.R {input.stats} {output.lineagefiltered} {input.prop} {output.dfs}
+		Rscript scripts/process_df.R {input.stats} {output.lineagefiltered} {input.prop} {params.minlineagecount} {output.dfs}
 
 		touch {output.status}
 		"""
