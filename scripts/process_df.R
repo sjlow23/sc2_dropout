@@ -10,6 +10,7 @@ args <- commandArgs(trailingOnly=TRUE)
 amplicons <- fread(args[1], header=T, sep="\t")
 lineages <- fread(args[2], header=T, sep="\t")
 consensus_nprop <- fread(args[3], header=T, sep="\t")
+mincount_lineage <- args[4]
 
 # Reformat input
 lineages <- lineages %>% 
@@ -45,7 +46,7 @@ lineages_min5 <- amplicons %>%
   left_join(lineages, by="sample") %>%
   group_by(lineage) %>% 
   summarize(count=n_distinct(sample)) %>%
-  filter(count>=5) %>%
+  filter(count>=mincount_lineage) %>%
   pull(lineage)
 
 #Fill in missing sample/primer combinations
@@ -70,4 +71,4 @@ samples_perfect <- amplicons_missing %>%
   ungroup()
 
 # Save objects
-save(samples_nonperfect, samples_perfect, lineages_min5, amplicons_missing, file = args[4])
+save(samples_nonperfect, samples_perfect, lineages_min5, amplicons_missing, file = args[5])

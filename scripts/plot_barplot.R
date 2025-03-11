@@ -36,6 +36,18 @@ barplot.df <- amplicons_missing %>%
 #Rowcount for plot
 rowcount <- ceiling(length(lineages_min5)/8)
 
+if (rowcount ==1 ) {
+	myheight = 5
+} else {
+	myheight = 10
+}
+
+if (length(lineages_min5) >= 5) {
+	mywidth = 12
+} else {
+	mywidth = 8
+}
+
 myplot <- barplot.df %>% 
 	filter(lineage %in% lineages_min5) %>%
 	ggplot(aes(x=reorder(primername, primer_clean), y=count)) +
@@ -52,4 +64,4 @@ myplot <- barplot.df %>%
 		plot.title=element_text(hjust=0.5))
 
 
-ggsave(args[3], myplot, width=12, height=13)
+ggsave(args[3], myplot, width=mywidth, height=myheight)
