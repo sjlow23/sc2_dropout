@@ -3,6 +3,7 @@ channels:
 
 
 dependencies:
-- conda-forge::r-pheatmap
+- r-pheatmap
 - r-dplyr
 - r-data.table
+- r-wesanderson
