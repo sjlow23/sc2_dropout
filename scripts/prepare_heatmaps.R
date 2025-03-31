@@ -32,7 +32,7 @@ heatmap_amp.df <- amplicons_missing %>%
 
 heatmap_amp.mat <- heatmap_amp.df %>%
 	select(-consensus_perc_N, -lineage) %>%
-	pivot_wider(names_from=primer_clean, values_from=amplicon_perc_N) %>%
+	pivot_wider(names_from = primer_clean, values_from = amplicon_perc_N) %>%
 	as.data.frame()
 
 rownames(heatmap_amp.mat) <- heatmap_amp.mat[, 1]
@@ -59,11 +59,11 @@ heatmap_primer.df <- amplicons_missing %>%
 
 heatmap_primer.mat <- heatmap_primer.df %>%
 	select(-consensus_perc_N, -lineage) %>%
-	pivot_longer(-c(sample_clean, primer_clean), names_to="position", values_to="mismatch") %>%
-	mutate(primer_final=case_when(position=="fwd_mismatch" ~ paste0(primer_clean, "F"), 
+	pivot_longer(-c(sample_clean, primer_clean), names_to = "position", values_to = "mismatch") %>%
+	mutate(primer_final = case_when(position == "fwd_mismatch" ~ paste0(primer_clean, "F"), 
 													TRUE ~ paste0(primer_clean, "R"))) %>%
 	select(-primer_clean, -position) %>%
-	pivot_wider(names_from=primer_final, values_from=mismatch) %>%
+	pivot_wider(names_from = primer_final, values_from = mismatch) %>%
 	as.data.frame()
 
 rownames(heatmap_primer.mat) <- heatmap_primer.mat[, 1]
