@@ -1,8 +1,12 @@
-INPUT_SEQ = "input/sequences_250217041.fasta"
+INPUT_SEQ = "input/sequences_250311053.fasta"
 INPUT_PRIMERS = "input/primers_sc2.bed"
-INPUT_LINEAGES = "input/lineage_250217041.tsv"
-OUTDIR = "output_250217041/"
-RUNID = 250217041
+INPUT_LINEAGES = "input/lineage_250311053.tsv"
+OUTDIR = "output_250311053/"
+RUNID = 250311053
+MIN_COUNT_LINEAGE = 3
+MAX_PRIMER_MISMATCH = 7		#max mismatches when matching primers
+
+
 
 rule all:
 	input:
