@@ -11,7 +11,7 @@ rule process_dfs:
 		status = OUTDIR + "status/process_dfs.txt"
 	params:
 		runid = RUNID,
-		minlineagecount = 3,
+		minlineagecount = MIN_COUNT_LINEAGE,
 	conda: "../envs/process_df.yaml"
 	shell:
 		"""

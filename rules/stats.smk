@@ -13,7 +13,7 @@ rule process_seqs:
 	conda: "../envs/process.yaml"
 	params:
 		runid = RUNID,
-		mismatch = 5
+		mismatch = MAX_PRIMER_MISMATCH
 	threads: 32
 	shell:
 		"""
