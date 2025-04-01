@@ -4,6 +4,7 @@ library(dplyr)
 library(data.table)
 library(pheatmap)
 library(wesanderson)
+library(RColorBrewer)
 
 args <- commandArgs(trailingOnly=TRUE)
 load(args[1])
@@ -27,9 +28,17 @@ heatmap_amp_annotation <- fread(args[4], header = T, sep = "\t") %>%
 heatmap_amp_annotation <- tibble::column_to_rownames(heatmap_amp_annotation, var = "sample_id")
 
 # Generate color palette for lineages
-# lineages <- unique(heatmap_amp_annotation$lineage)
-# lineages_colors <- mycolorpalette[1:length(lineages)]
-# named_colors <- setNames(lineages_colors, lineages)
+lineages <- unique(heatmap_amp_annotation$lineage)
+lineages_colors <- mycolorpalette[1:length(lineages)]
+named_colors_lineages <- setNames(lineages_colors, lineages)
+
+ann_colors <- list(
+  lineage = named_colors_lineages,
+  qc_status = c("pass" = "green", "fail" = "red"),
+  mean_depth = brewer.pal(8, 'PuBu'),
+  completeness = brewer.pal(8, 'BuGn'),
+  coverage_depth = brewer.pal(8, 'PuRd')
+)
 
 
 pdf(file=args[2], width=15, height=15)
@@ -45,7 +54,7 @@ pheatmap(heatmap_amp.mat,
 		cellwidth = 11, 
 		cellheight = 10,
 		annotation_row = heatmap_amp_annotation,
-		#annotation_colors = named_colors,
+		annotation_colors = ann_colors,
 		main = "Proportion of Ns in amplicon (based on consensus sequence)")
 dev.off()
 
@@ -60,9 +69,10 @@ pheatmap(heatmap_primer.mat,
 		na_col = "grey90",
 		fontsize = 6, 
 		display_numbers = F, 
-		cellwidth = 11, 
-		cellheight = 10,
+		cellwidth = 12, 
+		cellheight = 10.5,
 		annotation_row = heatmap_amp_annotation,
+		annotation_colors = ann_colors,
 		main = "Mismatches in SARS-CoV-2 primer binding sites (based on consensus sequence)")
 dev.off()
 

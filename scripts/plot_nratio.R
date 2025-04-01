@@ -36,7 +36,7 @@ nratio_lineagefacet <- amplicons_missing %>%
 															wes_palette("Darjeeling2"),
 															wes_palette("Moonrise3"))) +
 	scale_shape_manual(values = c(4,16)) +
-	ggrepel::geom_text_repel(aes(label = mylabel_sample), size = 2.5) +
+	ggrepel::geom_text_repel(aes(label = mylabel_sample), size = 2, max.overlaps = 10) +
 	geom_hline(yintercept = 0.2, linetype = "dashed", color = "navy") +
 	facet_wrap(.~lineage, scales = "free_x") +
 	ylab("Ratio of N (N_amplicon/N_consensus)") +
@@ -73,7 +73,7 @@ nratio_primerfacet <- amplicons_missing %>%
 															wes_palette("Darjeeling2"), 
 															wes_palette("Moonrise3"))) +
 	scale_shape_manual(values = c(4,16)) +
-	ggrepel::geom_text_repel(aes(label = mylabel_lineage), size = 2.5) +
+	ggrepel::geom_text_repel(aes(label = mylabel_lineage), size = 2, max.overlaps = 10) +
 	geom_hline(yintercept = 0.2, linetype = "dashed", color = "navy") +
 	xlim(0, 100) +
 	facet_wrap(.~primer, scales = "free_x") +
